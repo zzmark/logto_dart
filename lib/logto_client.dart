@@ -21,21 +21,21 @@ export '/src/modules/logto_storage_strategy.dart';
 
 /**
  * LogtoClient
- * 
+ *
  * The main class for the Logto SDK.
  * It provides all the user authentication and authorization methods.
- * 
+ *
  * @param config: LogtoConfig - the basic configuration object for the Logto SDK.
  * @param storageProvider: LogtoStorageStrategy (optional) - default is [InMemoryTokenStorage] used for storing tokens.
  * @param httpClient: http.Client (optional) - custom [http.Client] to be used for making http requests.
- * 
+ *
  * Example:
  * ```dart
  * final config = LogtoConfig(
  *  appId: 'oOeT50aNvY7QbLci6XJZt',
  *  endpoint: 'http://localhost:3001/',
  * );
- * 
+ *
  * final logtoClient = LogtoClient(config);
  */
 class LogtoClient {
@@ -242,8 +242,9 @@ class LogtoClient {
         url: signInUri.toString(),
         callbackUrlScheme: redirectUriScheme,
         options: const FlutterWebAuth2Options(
-          /// Prefer ephemeral web views for the sign-in flow. Only has an effect on Android.
-          intentFlags: ephemeralIntentFlags,
+          /// Prefer default web views for the sign-in flow. Only has an effect on Android.
+          /// modify: ephemeral web views will not background the app on Android, which will cause the sign-in flow
+          intentFlags: defaultIntentFlags,
 
           /// Prefer ephemeral web views for the sign-in flow. Only has an effect on iOS.
           preferEphemeral: true,
